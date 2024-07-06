@@ -43,6 +43,9 @@ func recursivePrintNbrBase(nbr, base_num int, base []rune) {
 }
 
 func PrintNbrBase(nbr int, base string) {
+  if nbr == 0 {
+		ft.PrintRune('0')
+  }
 	sl_base := []rune(base)
 	if !isValidBase(sl_base) {
 		ft.PrintRune('N')
