@@ -1,11 +1,11 @@
 package piscine
 
 func sliceLen(sl []rune) int {
-  l := 0
-  for range sl {
-    l++
-  }
-  return l
+	l := 0
+	for range sl {
+		l++
+	}
+	return l
 }
 
 func NRune(s string, n int) rune {
