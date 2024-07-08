@@ -6,7 +6,11 @@ import (
 )
 
 func main() {
-	arg1 := 4
+	arg1 := -1
+	fmt.Println(piscine.Fibonacci(arg1))
+	arg1 = 0
+	fmt.Println(piscine.Fibonacci(arg1))
+	arg1 = 4
 	fmt.Println(piscine.Fibonacci(arg1)) // 3
 	arg1 = 16
 	fmt.Println(piscine.Fibonacci(arg1)) // 987
