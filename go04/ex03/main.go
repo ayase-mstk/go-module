@@ -20,10 +20,10 @@ func printStr(s string) {
 }
 
 func main() {
-	args := os.Args
+	args := os.Args[1:]
 	l := sliceLen(args)
 
-	for i := 0; i < l-1; i++ {
+	for i := 0; i < l; i++ {
 		for j := i + 1; j < l; j++ {
 			if args[i] > args[j] {
 				args[i], args[j] = args[j], args[i]
@@ -31,7 +31,7 @@ func main() {
 		}
 	}
 	for i := 0; i < l; i++ {
-		printStr(os.Args[i])
+		printStr(args[i])
 		ft.PrintRune('\n')
 	}
 }
