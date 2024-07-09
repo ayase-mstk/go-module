@@ -9,7 +9,7 @@ func IterativeFactorial(nb int) int {
 
 	var ret int = 1
 	for i := 1; i <= nb; i++ {
-		if INT_MAX/nb < ret {
+		if INT_MAX/i < ret {
 			return 0
 		}
 		ret *= i
