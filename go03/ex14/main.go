@@ -8,4 +8,6 @@ import (
 func main() {
 	elems := []string{"Hello!", " How", " are", " you?"}
 	fmt.Println(piscine.BasicJoin(elems))
+	elems = []string{"", "Hello!", "", " How", " are", " you?", ""}
+	fmt.Println(piscine.BasicJoin(elems))
 }

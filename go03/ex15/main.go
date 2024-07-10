@@ -8,4 +8,6 @@ import (
 func main() {
 	toConcat := []string{"Hello!", " How", " are", " you?"}
 	fmt.Println(piscine.Join(toConcat, ":"))
+	toConcat = []string{"Hello!", "How", "are", "you?"}
+	fmt.Println(piscine.Join(toConcat, "あ"))
 }
