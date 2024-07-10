@@ -1,6 +1,6 @@
-BINARY_NAME := Boolean
+BINARY_NAME := Point
 
-MODULE_PATH := ex00
+MODULE_PATH := ex01
 RM          := rm -rf
 
 all: init fmt build
