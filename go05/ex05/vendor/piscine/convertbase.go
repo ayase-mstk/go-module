@@ -1,6 +1,9 @@
 package piscine
 
 func ConvertBase(nbr, baseFrom, baseTo string) string {
+	if strLen(nbr) == 0 || strLen(baseFrom) == 0 || strLen(baseTo) == 0 {
+		return ""
+	}
 	return nbrBase(atoiBase(nbr, baseFrom), baseTo)
 }
 

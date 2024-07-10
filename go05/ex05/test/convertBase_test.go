@@ -13,6 +13,20 @@ func TestConvertBase(t *testing.T) {
         baseTo string
         want string
     }{
+        //error case
+        {"",
+         "01",
+         "0123456789ABCDEF",
+         ""},
+        {"123",
+         "",
+         "0123456789ABCDEF",
+         ""},
+        {"123",
+         "0123456789ABCDEF",
+         "",
+         ""},
+        // success case
         {"1010",
          "01",
          "0123456789ABCDEF",
