@@ -1,8 +1,8 @@
 package piscine
 
-import (
-	"ft"
-)
+import "ft"
+
+const MIN_INT = ^(int(^uint(0) >> 1))
 
 func sliceLen(sl []rune) int {
 	l := 0
@@ -30,10 +30,6 @@ func isValidBase(base []rune) bool {
 }
 
 func recursivePrintNbrBase(nbr, base_num int, base []rune) {
-	if nbr < 0 {
-		ft.PrintRune('-')
-		nbr = -nbr
-	}
 	if nbr == 0 {
 		return
 	}
@@ -43,15 +39,33 @@ func recursivePrintNbrBase(nbr, base_num int, base []rune) {
 }
 
 func PrintNbrBase(nbr int, base string) {
-	if nbr == 0 {
-		ft.PrintRune('0')
-	}
 	sl_base := []rune(base)
+	base_num := sliceLen(sl_base)
+	isMinInt := false
+	var lastRune rune
 	if !isValidBase(sl_base) {
 		ft.PrintRune('N')
 		ft.PrintRune('V')
 		return
 	}
-	base_num := sliceLen(sl_base)
+	if nbr == 0 {
+		ft.PrintRune(sl_base[0])
+	}
+	if nbr < 0 {
+		ft.PrintRune('-')
+	}
+	if nbr == MIN_INT {
+		isMinInt = true
+		n := nbr % base_num
+		n = -n
+		lastRune = sl_base[n]
+		nbr /= base_num
+	}
+	if nbr < 0 {
+		nbr = -nbr
+	}
 	recursivePrintNbrBase(nbr, base_num, sl_base)
+	if isMinInt {
+		ft.PrintRune(lastRune)
+	}
 }
