@@ -1,16 +1,13 @@
 package piscine
 
-//import "fmt"
-
 func Split(s, sep string) []string {
 	var ret []string = make([]string, 0, countSplit(s, sep))
 	var sep_len int = strLen(sep)
-	var start int = -1
+	var start int = -1 // indexがwordでない時は-1になる
 
 	var rune_s []rune = []rune(s)
 
 	for i := 0; i < strLen(s); {
-		//fmt.Printf("%#U\n", rune_s[i])
 		if string(rune_s[i:i+sep_len]) == sep {
 			if start != -1 {
 				ret = append(ret, string(rune_s[start:i]))
@@ -26,6 +23,7 @@ func Split(s, sep string) []string {
 			i++
 		}
 	}
+	// 最後に区切り文字がなければ残りのwordを追加
 	if start != -1 {
 		ret = append(ret, string(rune_s[start:]))
 	} else {
