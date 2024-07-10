@@ -16,7 +16,7 @@ init:
 build: ${SRC}
 	go build -o ${BINARY_NAME} main.go
 
-run:
+run: init fmt build
 	./${BINARY_NAME}
 
 fmt:
