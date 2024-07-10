@@ -2,7 +2,10 @@ package piscine
 
 import "ft"
 
-const MIN_INT = ^(int(^uint(0) >> 1))
+const (
+	MinInt          = -1 << (64 - 1)
+	InvalidBaseChar = "NV"
+)
 
 func sliceLen(sl []rune) int {
 	l := 0
@@ -13,13 +16,10 @@ func sliceLen(sl []rune) int {
 }
 
 func isValidBase(base []rune) bool {
-	// at least 2 characters
-	// each character must be unique
-	// should not contain sign
 	if sliceLen(base) < 2 {
 		return false
 	}
-	charMap := map[rune]bool{}
+	charMap := make(map[rune]bool)
 	for _, c := range base {
 		if c == '+' || c == '-' || charMap[c] {
 			return false
@@ -29,43 +29,54 @@ func isValidBase(base []rune) bool {
 	return true
 }
 
-func recursivePrintNbrBase(nbr, base_num int, base []rune) {
+func PrintNbrBaseRecursive(nbr, baseNum int, base []rune) {
 	if nbr == 0 {
 		return
 	}
-	recursivePrintNbrBase(nbr/base_num, base_num, base)
-	n := nbr % base_num
-	ft.PrintRune(base[n])
+	PrintNbrBaseRecursive(nbr/baseNum, baseNum, base)
+	ft.PrintRune(base[nbr%baseNum])
+}
+
+func HandleMinInt(nbr int, baseNum int, base []rune) (int, rune) {
+	isMinInt := nbr == MinInt
+	var lastRune rune
+	if isMinInt {
+		n := -(nbr % baseNum)
+		lastRune = base[n]
+		nbr /= baseNum
+	}
+	return nbr, lastRune
 }
 
 func PrintNbrBase(nbr int, base string) {
-	sl_base := []rune(base)
-	base_num := sliceLen(sl_base)
-	isMinInt := false
-	var lastRune rune
-	if !isValidBase(sl_base) {
-		ft.PrintRune('N')
-		ft.PrintRune('V')
+	slBase := []rune(base)
+	baseNum := sliceLen(slBase)
+
+	if !isValidBase(slBase) {
+		for _, r := range InvalidBaseChar {
+			ft.PrintRune(r)
+		}
 		return
 	}
+
 	if nbr == 0 {
-		ft.PrintRune(sl_base[0])
+		ft.PrintRune(slBase[0])
+		return
 	}
+
 	if nbr < 0 {
 		ft.PrintRune('-')
 	}
-	if nbr == MIN_INT {
-		isMinInt = true
-		n := nbr % base_num
-		n = -n
-		lastRune = sl_base[n]
-		nbr /= base_num
-	}
+
+	nbr, lastRune := HandleMinInt(nbr, baseNum, slBase)
+
 	if nbr < 0 {
 		nbr = -nbr
 	}
-	recursivePrintNbrBase(nbr, base_num, sl_base)
-	if isMinInt {
+
+	PrintNbrBaseRecursive(nbr, baseNum, slBase)
+
+	if lastRune != 0 {
 		ft.PrintRune(lastRune)
 	}
 }
