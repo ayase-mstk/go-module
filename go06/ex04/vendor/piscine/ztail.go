@@ -7,7 +7,7 @@ func argsValidation() (int, error) {
 	argc := sliceLen(os.Args[1:])
 	args := os.Args[1:]
 
-	if argc == 1 && args[0] != "-c" {
+	if argc == 0 || (argc == 1 && args[0] != "-c") {
 		err.setMsg("ztail: only the -c option is supported.")
 		return 0, err
 	}
