@@ -15,13 +15,11 @@ init:
 build: ${SRC}
 	go build -o ${BINARY_NAME} main.go
 
-run:
+run: init fmt build
 	./${BINARY_NAME}
 
 fmt:
-	go fmt *.go
-	go fmt vendor/piscine/*.go
-	go fmt test/*.go
+	gofmt -s -w .
 
 test: init
 	go build -o $(TEST_DIR)/$(BINARY_NAME) main.go
