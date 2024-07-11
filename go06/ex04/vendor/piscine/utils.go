@@ -1,24 +1,8 @@
 package piscine
 
-func stringSliceLen(s []string) int {
+func sliceLen[T any](sl []T) int {
 	l := 0
-	for range s {
-		l++
-	}
-	return l
-}
-
-func byteSliceLen(s []byte) int {
-	l := 0
-	for range s {
-		l++
-	}
-	return l
-}
-
-func runeSliceLen(s []rune) int {
-	l := 0
-	for range s {
+	for range sl {
 		l++
 	}
 	return l
@@ -38,7 +22,7 @@ func isNumeric(r rune) bool {
 
 func isNumericWord(s string) bool {
 	sl := []rune(s)
-	for i := 0; i < runeSliceLen(sl); i++ {
+	for i := 0; i < sliceLen(sl); i++ {
 		if !isNumeric(sl[i]) {
 			return false
 		}

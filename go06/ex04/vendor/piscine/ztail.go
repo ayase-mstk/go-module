@@ -3,9 +3,9 @@ package piscine
 import "os"
 
 func argsValidation() (int, error) {
-	argc := stringSliceLen(os.Args[1:])
-	args := os.Args[1:]
 	var err CustomError
+	argc := sliceLen(os.Args[1:])
+	args := os.Args[1:]
 
 	if argc == 1 && args[0] != "-c" {
 		err.setMsg("ztail: only the -c option is supported.")
@@ -46,14 +46,14 @@ func ztailReadFile(fileName string, tail int) bool {
 		os.Stderr.WriteString(err.Error() + "\n")
 		return false
 	}
-	os.Stdout.Write(data[byteSliceLen(data)-tail:])
+	os.Stdout.Write(data[sliceLen(data)-tail:])
 	return true
 }
 
 func printHead(fileName string) {
-  if strLen(fileName) == 1 && fileName == "-" {
-    fileName = "standard input"
-  }
+	if strLen(fileName) == 1 && fileName == "-" {
+		fileName = "standard input"
+	}
 	output := "==> " + fileName + " <==\n"
 	os.Stdout.WriteString(output)
 }
@@ -66,7 +66,7 @@ func Ztail() {
 	}
 
 	args := os.Args[3:]
-	argc := stringSliceLen(os.Args[3:])
+	argc := sliceLen(os.Args[3:])
 	exitCode := 0
 	var n int = 0
 	switch argc {
