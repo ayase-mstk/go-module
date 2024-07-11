@@ -19,7 +19,7 @@ func TestZtail(t *testing.T) {
 		// error case exit status 1
 		{
 			name:     "Error Case, \"\"",
-			args:     []string{""},
+			args:     []string{},
 			want:     "ztail: only the -c option is supported.",
 			exitCode: 1,
 		},
