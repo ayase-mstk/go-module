@@ -86,6 +86,9 @@ func Ztail() {
 
 	default:
 		for n < argc {
+			if n != 0 {
+				os.Stdout.WriteString("\n")
+			}
 			printHead(args[n])
 			if strLen(args[n]) == 1 && rune(args[n][0]) == '-' {
 				ztailStdIn()
